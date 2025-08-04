@@ -1,0 +1,25 @@
+# Diretórios e arquivos da IDE
+.vs/
+*.user
+*.suo
+
+# Diretórios de build
+bin/
+obj/
+TestResults/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+
+# Diretórios do Rider ou VSCode (se estiver usando)
+.idea/
+.vscode/
+
+# Evita indexar arquivos de bloqueio de banco de dados do VS
+**/.vs/**/*.db
+**/.vs/**/*.suo
+**/.vs/**/*.vssscc
+**/.vs/**/*.vsidx
+
