@@ -26,7 +26,7 @@ public class HttpResponseExceptionFilter : IExceptionFilter
                 new ObjectResult(new { erro = exception.Message }) { StatusCode = 500 },
 
 
-            // USUÁRIO
+            // USUARIO
             UsuarioPorIdNaoEncontradoException or UsuarioPorEmailNaoEncontradoException =>
                 new NotFoundObjectResult(new { erro = exception.Message }),
 
@@ -36,6 +36,9 @@ public class HttpResponseExceptionFilter : IExceptionFilter
             FalhaAoAtualizarUsuarioException or FalhaAoExcluirUsuarioException =>
                 new ObjectResult(new { erro = exception.Message }) { StatusCode = 500 },
 
+            //LOGIN
+            LoginInvalidoException =>
+                new UnauthorizedObjectResult(new { erro = exception.Message }),
 
             // OUTROS
             _ => new ObjectResult(new { erro = "Erro interno inesperado." }) { StatusCode = 500 }
