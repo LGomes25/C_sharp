@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using ControleEstoque.Application.DTOs.Request;
+﻿using ControleEstoque.Application.DTOs.Request;
 using ControleEstoque.Application.DTOs.Response;
 using ControleEstoque.Domain.Entities;
 using ControleEstoque.Domain.Enums;

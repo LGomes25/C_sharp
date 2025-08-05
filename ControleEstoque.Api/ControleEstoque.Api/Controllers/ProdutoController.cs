@@ -1,6 +1,5 @@
 ﻿using ControleEstoque.Application.DTOs.Request;
 using ControleEstoque.Application.DTOs.Response;
-using ControleEstoque.Application.Exceptions;
 using ControleEstoque.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,21 +18,21 @@ public class ProdutoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ProdutoResponseDto>>> GetTodos()
+    public async Task<ActionResult<List<ProdutoResponseDto>>> BuscarTodos()
     {
         var produtos = await _produtoService.ListarTodos();
         return Ok(produtos);
     }
 
     [HttpGet("id/{id}")]
-    public async Task<ActionResult<ProdutoResponseDto>> GetPorId(int id)
+    public async Task<ActionResult<ProdutoResponseDto>> BuscarPorId(int id)
     {
         var produto = await _produtoService.BuscarPorId(id);
         return Ok(produto);
     }
 
     [HttpGet("part/{numeroPart}")]
-    public async Task<ActionResult<ProdutoResponseDto>> GetPorNumeroPart(string numeroPart)
+    public async Task<ActionResult<ProdutoResponseDto>> BuscarPorNumeroPart(string numeroPart)
     {
         var produto = await _produtoService.BuscarPorNumeroPart(numeroPart);
         return Ok(produto);
@@ -45,7 +44,7 @@ public class ProdutoController : ControllerBase
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var novo = await _produtoService.CriarProduto(dto);
-        return CreatedAtAction(nameof(GetPorId), new { id = novo.Id }, novo);
+        return CreatedAtAction(nameof(BuscarPorId), new { id = novo.Id }, novo);
     }
 
     [HttpPut("id/{id}")]

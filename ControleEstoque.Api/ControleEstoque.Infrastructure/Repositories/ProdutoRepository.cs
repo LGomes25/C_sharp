@@ -2,7 +2,6 @@
 using ControleEstoque.Infrastructure.Context;
 using ControleEstoque.Infrastructure.Repositories.Interfaces;
 using Dapper;
-using System.Data;
 
 namespace ControleEstoque.Infrastructure.Repositories;
 

@@ -12,6 +12,7 @@ public class HttpResponseExceptionFilter : IExceptionFilter
 
         context.Result = exception switch
         {
+            // PRODUTO
             ProdutoPorIdNaoEncontradoException or ProdutoNaoEncontradoException =>
                 new NotFoundObjectResult(new { erro = exception.Message }),
 
@@ -22,15 +23,22 @@ public class HttpResponseExceptionFilter : IExceptionFilter
                 new ConflictObjectResult(new { erro = exception.Message }),
 
             FalhaAoAtualizarProdutoException or FalhaAoExcluirProdutoException =>
-                new ObjectResult(new { erro = exception.Message })
-                {
-                    StatusCode = 500
-                },
+                new ObjectResult(new { erro = exception.Message }) { StatusCode = 500 },
 
-            _ => new ObjectResult(new { erro = "Erro interno inesperado." })
-            {
-                StatusCode = 500
-            }
+
+            // USUÁRIO
+            UsuarioPorIdNaoEncontradoException or UsuarioPorEmailNaoEncontradoException =>
+                new NotFoundObjectResult(new { erro = exception.Message }),
+
+            EmailDuplicadoException or AlteracaoDeEmailNaoPermitidaException =>
+                new BadRequestObjectResult(new { erro = exception.Message }),
+
+            FalhaAoAtualizarUsuarioException or FalhaAoExcluirUsuarioException =>
+                new ObjectResult(new { erro = exception.Message }) { StatusCode = 500 },
+
+
+            // OUTROS
+            _ => new ObjectResult(new { erro = "Erro interno inesperado." }) { StatusCode = 500 }
         };
 
         context.ExceptionHandled = true;

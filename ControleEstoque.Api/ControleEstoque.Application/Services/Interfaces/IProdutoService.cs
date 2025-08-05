@@ -1,10 +1,5 @@
 ﻿using ControleEstoque.Application.DTOs.Request;
 using ControleEstoque.Application.DTOs.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleEstoque.Application.Services.Interfaces;
 

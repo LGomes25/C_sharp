@@ -1,11 +1,4 @@
-﻿using ControleEstoque.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ControleEstoque.Application.DTOs.Response;
+﻿namespace ControleEstoque.Application.DTOs.Response;
 
 public class ProdutoResponseDto
 {

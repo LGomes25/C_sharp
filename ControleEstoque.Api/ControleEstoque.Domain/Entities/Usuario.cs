@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ControleEstoque.Domain.Entities;
 
-internal class Usuario
+public class Usuario
 {
     public int Id { get; set; }
 
@@ -22,4 +17,6 @@ internal class Usuario
     [Required]
     [MinLength(6)]
     public string Senha { get; set; } = string.Empty;
+
+    public bool Ativo { get; set; } = true;
 }
