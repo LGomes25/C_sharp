@@ -1,0 +1,570 @@
+{
+	"info": {
+		"_postman_id": "611c4272-f31d-4b86-91db-85b6ec5e8137",
+		"name": "SistemaControleEstoque",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44822458",
+		"_collection_link": "https://lgomes-8289.postman.co/workspace/Residencia-API~9edd5a9f-9072-4e23-8b04-9a6e63f9659b/collection/44822458-611c4272-f31d-4b86-91db-85b6ec5e8137?action=share&source=collection_link&creator=44822458"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"leo@gmail.com\",\r\n  \"senha\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Listar Todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Produto",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Criar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Anel Vedacao 230\",\r\n  \"preco\": 2.53,\r\n  \"quantidade\": 50,\r\n  \"minimaQuantidade\": 30,\r\n  \"numeroPart\": \"000.25230\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Produto",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Listar Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Produto/id/5",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Produto",
+						"id",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Alterar Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Anel Vedacao 230\",\r\n  \"preco\": 2.53,\r\n  \"quantidade\": 45,\r\n  \"minimaQuantidade\": 30,\r\n  \"numeroPart\": \"000.25230\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Produto/id/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Produto",
+						"id",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Excluir Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Produto/id/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Produto",
+						"id",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Listar numeroPart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Produto/part/000.25221",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Produto",
+						"part",
+						"000.25221"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Alterar numeroPart",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Anel de vedacao 220\",\r\n  \"preco\": 1.30,\r\n  \"quantidade\": 60,\r\n  \"minimaQuantidade\": 30,\r\n  \"numeroPart\": \"000.25220\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Produto/part/000.25220",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Produto",
+						"part",
+						"000.25220"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Excluir numeroPart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Produto/part/000.25220",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Produto",
+						"part",
+						"000.25220"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produto Decrementa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroPart\": \"000.25221\",\r\n  \"quantidade\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Produto/decrementaEstoque/000.25221",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Produto",
+						"decrementaEstoque",
+						"000.25221"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuario Listar Todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Usuario",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario Criar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Junior\",\r\n  \"email\": \"junior@gmail.com\",\r\n  \"senha\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Usuario",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario Listar Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/Usuario/id/3",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"Usuario",
+						"id",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario Alterar Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Felipe Junior\",\r\n  \"email\": \"felipe@gmail.com\",\r\n  \"senha\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/usuario/id/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"usuario",
+						"id",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario Excluir Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Usuario/id/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Usuario",
+						"id",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario Listar Email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Usuario/email/junior@gmail.com",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Usuario",
+						"email",
+						"junior@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario Alterar Email",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Junior Jose\",\r\n  \"email\": \"junior@gmail.com\",\r\n  \"senha\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Usuario/email/junior@gmail.com",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Usuario",
+						"email",
+						"junior@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario Excluir Email",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7012/api/Usuario/email/junior@gmail.com",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"api",
+						"Usuario",
+						"email",
+						"junior@gmail.com"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://localhost:7012",
+			"type": "default"
+		}
+	]
+}
