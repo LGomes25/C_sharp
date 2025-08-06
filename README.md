@@ -32,17 +32,18 @@ Os testes unitarios cobrem criação, busca, atualização e exclusão de produt
 
 ## 📁 Estrutura do Projeto
 
-ControleEstoque/
-├── Api/
-│   └── Controllers, Filters
-├── Application/
-│   └── DTOs, Services, Mappers, Exceptions
-├── Domain/
-│   └── Entities
-├── Infrastructure/
-│   └── Repositories, Context (Dapper)
-├── Tests/
-│   └── Unitários com xUnit e Moq
+ControleEstoque:
+
+  ├── Api: ->  Controllers, Filters
+  
+  ├── Application -> DTOs, Services, Mappers, Exceptions
+  
+  ├── Domain -> Entities, Enuns
+  
+  ├── Infrastructure -> Repositories, Context (Dapper)
+   
+  ├── Tests -> Unitários com xUnit e Moq
+
 
 
 -------------------------------------------------------------------------------------------
