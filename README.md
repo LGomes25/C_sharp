@@ -50,6 +50,6 @@ ControleEstoque:
 
 ## 👨‍💻 Autor
 
-Projeto desenvolvido por **[Leonardo Gomes]** durante estudos e práticas com ASP.NET Core.
+Projeto desenvolvido por **Leonardo Gomes** durante estudos e práticas com ASP.NET Core.
 
 -------------------------------------------------------------------------------------------
