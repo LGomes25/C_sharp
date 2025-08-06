@@ -34,6 +34,9 @@ public class ProdutoService : IProdutoService
 
     public async Task<ProdutoResponseDto?> BuscarPorNumeroPart(string numeroPart)
     {
+        if (string.IsNullOrWhiteSpace(numeroPart))
+            throw new CampoObrigatorioException("numeroPart");
+
         var produto = await _produtoRepository.ObterPorNumeroPart(numeroPart);
 
         if (produto == null)
@@ -47,6 +50,16 @@ public class ProdutoService : IProdutoService
         var numeroPartExistente = await _produtoRepository.ObterPorNumeroPart(dto.NumeroPart);
         if (numeroPartExistente != null)
             throw new ProdutoDuplicadoException(dto.NumeroPart);
+
+        if (dto.Preco < 0)
+            throw new ValorInvalidoException("preço", dto.Preco);
+
+        if (dto.Quantidade < 0)
+            throw new ValorInvalidoException("quantidade", dto.Quantidade);
+
+        if (dto.MinimaQuantidade < 0)
+            throw new ValorInvalidoException("mínimaQuantidade", dto.MinimaQuantidade);
+
 
         var produto = dto.ToModel();
         produto.Ativo = true;
@@ -64,6 +77,14 @@ public class ProdutoService : IProdutoService
         if (produto.NumeroPart != dto.NumeroPart)
             throw new AlteracaoDeNumeroPartNaoPermitidaException(produto.NumeroPart, dto.NumeroPart);
 
+        if (dto.Preco < 0)
+            throw new ValorInvalidoException("preço", dto.Preco);
+
+        if (dto.Quantidade < 0)
+            throw new ValorInvalidoException("quantidade", dto.Quantidade);
+
+        if (dto.MinimaQuantidade < 0)
+            throw new ValorInvalidoException("mínimaQuantidade", dto.MinimaQuantidade);
 
         produto.Nome = dto.Nome;
         produto.Preco = dto.Preco;
@@ -80,12 +101,24 @@ public class ProdutoService : IProdutoService
 
     public async Task<ProdutoResponseDto?> AtualizarProdutoPorNumeroPart(string numeroPart, ProdutoRequestDto dto)
     {
+        if (string.IsNullOrWhiteSpace(numeroPart))
+            throw new CampoObrigatorioException("numeroPart");
+
         var produto = await _produtoRepository.ObterPorNumeroPart(numeroPart);
         if (produto == null)
             throw new ProdutoNaoEncontradoException(numeroPart);
 
         if (produto.NumeroPart != dto.NumeroPart)
             throw new AlteracaoDeNumeroPartNaoPermitidaException(produto.NumeroPart, dto.NumeroPart);
+
+        if (dto.Preco < 0)
+            throw new ValorInvalidoException("preço", dto.Preco);
+
+        if (dto.Quantidade < 0)
+            throw new ValorInvalidoException("quantidade", dto.Quantidade);
+
+        if (dto.MinimaQuantidade < 0)
+            throw new ValorInvalidoException("mínimaQuantidade", dto.MinimaQuantidade);
 
         produto.Nome = dto.Nome;
         produto.Preco = dto.Preco;
@@ -137,6 +170,9 @@ public class ProdutoService : IProdutoService
 
     public async Task<bool> ExcluirPorNumeroPart(string numeroPart)
     {
+        if (string.IsNullOrWhiteSpace(numeroPart))
+            throw new CampoObrigatorioException("numeroPart");
+
         var produto = await _produtoRepository.ObterPorNumeroPart(numeroPart);
         if (produto == null)
             throw new ProdutoNaoEncontradoException(numeroPart);

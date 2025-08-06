@@ -18,9 +18,15 @@ public class LoginService : ILoginService
 
     public async Task<UsuarioResponseDto> LoginAsync(LoginRequestDto dto)
     {
+        if (string.IsNullOrWhiteSpace(dto.Email))
+            throw new CampoObrigatorioException("email");
+
+        if (string.IsNullOrWhiteSpace(dto.Senha))
+            throw new CampoObrigatorioException("senha");
+
         var usuario = await _usuarioRepository.BuscarPorEmail(dto.Email);
 
-        if (usuario == null)
+        if (usuario == null || usuario.Senha != dto.Senha)
             throw new LoginInvalidoException();
 
         return usuario.ToResponseDto();

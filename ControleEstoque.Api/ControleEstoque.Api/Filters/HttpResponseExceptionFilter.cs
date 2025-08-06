@@ -12,35 +12,38 @@ public class HttpResponseExceptionFilter : IExceptionFilter
 
         context.Result = exception switch
         {
-            // PRODUTO
-            ProdutoPorIdNaoEncontradoException or ProdutoNaoEncontradoException =>
-                new NotFoundObjectResult(new { erro = exception.Message }),
+            // 400 - BAD REQUEST (Requisição mal formada ou inválida)
+            CampoObrigatorioException
+            or ValorInvalidoException
+            or EstoqueInsuficienteException
+            or AlteracaoDeNumeroPartNaoPermitidaException
+            or AlteracaoDeEmailNaoPermitidaException
+                => new BadRequestObjectResult(new { erro = exception.Message }),
 
-            EstoqueInsuficienteException or AlteracaoDeNumeroPartNaoPermitidaException =>
-                new BadRequestObjectResult(new { erro = exception.Message }),
+            // 401 - UNAUTHORIZED (Credenciais inválidas)
+            LoginInvalidoException
+                => new UnauthorizedObjectResult(new { erro = exception.Message }),
 
-            ProdutoDuplicadoException =>
-                new ConflictObjectResult(new { erro = exception.Message }),
+            // 404 - NOT FOUND (Recurso não encontrado)
+            ProdutoPorIdNaoEncontradoException
+            or ProdutoNaoEncontradoException
+            or UsuarioPorIdNaoEncontradoException
+            or UsuarioPorEmailNaoEncontradoException
+                => new NotFoundObjectResult(new { erro = exception.Message }),
 
-            FalhaAoAtualizarProdutoException or FalhaAoExcluirProdutoException =>
-                new ObjectResult(new { erro = exception.Message }) { StatusCode = 500 },
+            // 409 - CONFLICT (Conflito de dados)
+            ProdutoDuplicadoException
+            or EmailDuplicadoException
+                => new ConflictObjectResult(new { erro = exception.Message }),
 
+            // 500 - INTERNAL SERVER ERROR (Erro inesperado na persistência ou sistema)
+            FalhaAoAtualizarProdutoException
+            or FalhaAoExcluirProdutoException
+            or FalhaAoAtualizarUsuarioException
+            or FalhaAoExcluirUsuarioException
+                => new ObjectResult(new { erro = exception.Message }) { StatusCode = 500 },
 
-            // USUARIO
-            UsuarioPorIdNaoEncontradoException or UsuarioPorEmailNaoEncontradoException =>
-                new NotFoundObjectResult(new { erro = exception.Message }),
-
-            EmailDuplicadoException or AlteracaoDeEmailNaoPermitidaException =>
-                new BadRequestObjectResult(new { erro = exception.Message }),
-
-            FalhaAoAtualizarUsuarioException or FalhaAoExcluirUsuarioException =>
-                new ObjectResult(new { erro = exception.Message }) { StatusCode = 500 },
-
-            //LOGIN
-            LoginInvalidoException =>
-                new UnauthorizedObjectResult(new { erro = exception.Message }),
-
-            // OUTROS
+            // 500 - OUTROS ERROS NÃO MAPEADOS
             _ => new ObjectResult(new { erro = "Erro interno inesperado." }) { StatusCode = 500 }
         };
 

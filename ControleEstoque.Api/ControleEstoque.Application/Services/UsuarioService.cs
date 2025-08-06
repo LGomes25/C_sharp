@@ -24,6 +24,9 @@ public class UsuarioService : IUsuarioService
 
     public async Task<UsuarioResponseDto> BuscarPorId(int id)
     {
+        if (id <= 0)
+            throw new CampoObrigatorioException("id");
+
         var usuario = await _usuarioRepository.BuscarPorId(id);
 
         if (usuario == null)
@@ -34,6 +37,9 @@ public class UsuarioService : IUsuarioService
 
     public async Task<UsuarioResponseDto> BuscarPorEmail(string email)
     {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new CampoObrigatorioException("email");
+
         var usuario = await _usuarioRepository.BuscarPorEmail(email);
 
         if (usuario == null)
@@ -49,6 +55,15 @@ public class UsuarioService : IUsuarioService
         if (emailExitente != null)
             throw new EmailDuplicadoException(dto.Email);
 
+        if (string.IsNullOrWhiteSpace(dto.Nome))
+            throw new CampoObrigatorioException("nome");
+
+        if (string.IsNullOrWhiteSpace(dto.Email))
+            throw new CampoObrigatorioException("email");
+
+        if (string.IsNullOrWhiteSpace(dto.Senha))
+            throw new CampoObrigatorioException("senha");
+
         var usuario = dto.ToModel();
         usuario.Ativo = true;
 
@@ -58,10 +73,22 @@ public class UsuarioService : IUsuarioService
 
     public async Task<UsuarioResponseDto> AtualizarUsuario(int id, UsuarioRequestDto dto)
     {
+        if (id <= 0)
+            throw new CampoObrigatorioException("id");
+
         var usuarioExistente = await _usuarioRepository.BuscarPorId(id);
 
         if (usuarioExistente == null)
             throw new UsuarioPorIdNaoEncontradoException(id);
+
+        if (string.IsNullOrWhiteSpace(dto.Nome))
+            throw new CampoObrigatorioException("nome");
+
+        if (string.IsNullOrWhiteSpace(dto.Email))
+            throw new CampoObrigatorioException("email");
+
+        if (string.IsNullOrWhiteSpace(dto.Senha))
+            throw new CampoObrigatorioException("senha");
 
         usuarioExistente.Nome = dto.Nome;
         usuarioExistente.Email = dto.Email;
@@ -77,10 +104,22 @@ public class UsuarioService : IUsuarioService
 
     public async Task<UsuarioResponseDto> AtualizarUsuarioPorEmail(string email, UsuarioRequestDto dto)
     {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new CampoObrigatorioException("email");
+
         var usuarioExistente = await _usuarioRepository.BuscarPorEmail(email);
 
         if (usuarioExistente == null)
             throw new UsuarioPorEmailNaoEncontradoException(email);
+
+        if (string.IsNullOrWhiteSpace(dto.Nome))
+            throw new CampoObrigatorioException("nome");
+
+        if (string.IsNullOrWhiteSpace(dto.Email))
+            throw new CampoObrigatorioException("email");
+
+        if (string.IsNullOrWhiteSpace(dto.Senha))
+            throw new CampoObrigatorioException("senha");
 
         if (usuarioExistente.Email != dto.Email)
             throw new AlteracaoDeEmailNaoPermitidaException(usuarioExistente.Email, dto.Email);
@@ -99,6 +138,9 @@ public class UsuarioService : IUsuarioService
 
     public async Task<bool> ExcluirPorId(int id)
     {
+        if (id <= 0)
+            throw new CampoObrigatorioException("id");
+
         var usuarioExistente = await _usuarioRepository.BuscarPorId(id);
 
         if (usuarioExistente == null)
@@ -114,6 +156,9 @@ public class UsuarioService : IUsuarioService
 
     public async Task<bool> ExcluirPorEmail(string email)
     {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new CampoObrigatorioException("email");
+
         var usuarioExistente = await _usuarioRepository.BuscarPorEmail(email);
 
         if (usuarioExistente == null)
